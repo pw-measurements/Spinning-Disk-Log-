@@ -1,0 +1,125 @@
+<UserData>
+	canvas:
+		Color:
+			rgb:(.047,.137,.294,1)
+		Rectangle:
+			pos: self.pos
+			size: self.size
+	BoxLayout:
+	    GridLayout:
+	
+			row_default_height:'60dp'
+			row_force_default:True
+			cols:1
+			Label:
+				text:"Welcome to the Spinning Disk Log. Please Fill in the Fields Below and Press Submit"
+				font_size:25
+				text_size: self.size
+				halign: 'center'
+			    valign: 'middle'
+			
+			
+			TextInput:
+				write_tab:False
+				id:name
+				multiline:False
+				hint_text:'First and Last Name'
+				font_size:20
+			TextInput:
+				disabled:root.checker("name",name.text)
+				write_tab:False
+				id: group
+				multiline:False
+				hint_text:'Research Group'
+				font_size:20				
+			TextInput:
+				disabled:root.checker("group",group.text)
+				write_tab:False
+				id: dept
+				multiline:False
+				hint_text:'Department'
+				font_size:20
+			GridLayout:
+				cols:2
+				row_default_height:'60dp'
+				row_force_default:True
+				TextInput:
+					disabled:root.checker("dept",dept.text)
+					write_tab:False
+					id:timein
+					multiline:False
+					hint_text:'Time In (h:m)'
+					font_size:20
+				TextInput:
+					disabled:root.checker("timein",timein.text)
+					write_tab:False
+					id: timeout
+					multiline:False
+					hint_text:'Time Out (h:m)'
+					font_size:20
+			
+			BoxLayout:
+				height: "20 dp"
+				size_hint_y: None
+				Label:
+					text:"Time Used: " + str(timeused.value) +" Hr"
+					text_size: self.size
+					halign: 'center'
+				    valign: 'middle'
+				    font_size:20
+				    size_hint_x:90
+				Label:
+					text:"Affiliated with UA?"
+					text_size: self.size
+					halign: 'center'
+				    valign: 'middle'
+				    font_size:15
+				    size_hint_x:10
+			BoxLayout:
+				height: "30dp"
+				size_hint_y: None
+				Slider:
+					disabled:root.checker("timeout",timeout.text)
+					id:timeused
+					range:(0,12)
+					step:.25
+					value:0
+					size_hint_x:95
+				TextInput:
+					write_tab:False
+					disabled:root.checker("slider",timeused.value)
+					id:affiliation
+					multiline:False
+					hint_text:"y/n"
+					font_size:20
+					size_hint_x:10
+	
+								
+					
+						
+					
+			TextInput:
+				write_tab:False
+				disabled:root.checker("afil",affiliation.text)
+				id:sample
+				multiline:False
+				hint_text:'Sample Imaged/Bio-Hazardous'
+				font_size:20
+			TextInput:
+				disabled:root.checker("sample",sample.text)
+				write_tab:False
+				id:comment
+				multiline:False
+				hint_text:'Comments?'
+				font_size:20
+								
+	        Button:
+				disabled:root.checker("sample",sample.text)
+				background_color:(.12,.91,1,1)
+				id:submit
+	            text: "Submit"
+	            font_size: 18	
+	            text_size: self.size
+				halign: 'center'
+			    valign: 'middle'
+			    on_press:root.submit()			    

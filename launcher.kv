@@ -1,0 +1,61 @@
+<launcher>:
+	canvas:
+		Color:
+			rgb:(.047,.137,.294,1)
+		Rectangle:
+			pos: self.pos
+			size: self.size
+	BoxLayout:
+		orientation:"vertical"
+		padding:1
+		spacing:1
+		height:"100 dp"
+		size_hint_y:None
+		Label:
+			text:"Please sign logbook at the conclusion of your session"
+			text_size: self.size
+			halign: 'center'
+		    valign: 'middle'
+			height:"40 dp"
+			size_hint_y:None
+			font_size:20
+		
+		
+		BoxLayout:
+			padding:1
+			spacing:1
+			height:"60 dp"
+			size_hint_y:None
+			TextInput:
+				id:name
+				size_hint_x:5
+				hint_text:'Name'
+				multiline:False
+				font_size:20
+				write_tab:False
+			TextInput:
+				id:group
+				size_hint_x:5
+				disabled:root.checker("group",name.text)
+				multiline:False
+				font_size:20
+				hint_text:'Group'
+				write_tab:False
+			TextInput:
+				id:dept
+				disabled:root.checker("dept",group.text)
+				size_hint_x:2
+				multiline:False
+				font_size:20
+				hint_text:'Dept'
+				write_tab:False
+			Button:
+				id:launch
+				disabled:root.checker("launch",dept.text)
+				size_hint_x:2
+				multiline:False
+				font_size:20
+				text:"Launch"
+				background_color:(.12,.91,1,1)
+				on_press:root.launch()	
+		
